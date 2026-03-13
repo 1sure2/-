@@ -614,6 +614,133 @@ body.dark-mode .footer-links a:active {
     border-bottom: none;
 }
 
+/* 下载列表样式 */
+.download-list {
+    list-style: none;
+}
+
+.download-item {
+    padding: 12px 0;
+    border-bottom: 1px dashed #999;
+    transition: all 0.3s ease;
+    font-family: 'Comic Sans MS', cursive;
+}
+
+.download-item:hover {
+    color: #333;
+    padding-left: 10px;
+    transform: translateX(5px);
+}
+
+.download-item:last-child {
+    border-bottom: none;
+}
+
+.download-title {
+    cursor: pointer;
+    display: block;
+    font-weight: bold;
+    position: relative;
+    padding-right: 20px;
+    transition: all 0.3s ease;
+}
+
+.download-title::after {
+    content: '▼';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 12px;
+    transition: transform 0.3s ease;
+}
+
+.download-item.active .download-title::after {
+    transform: translateY(-50%) rotate(180deg);
+}
+
+.download-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    padding: 0 10px;
+    margin-top: 10px;
+    background: rgba(255, 255, 255, 0.5);
+    border-left: 3px solid #333;
+    border-radius: 0 8px 8px 0;
+}
+
+.download-item.active .download-content {
+    max-height: 300px;
+    padding: 15px 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.download-content p {
+    margin: 8px 0;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.download-button {
+    background: #333;
+    color: #fff;
+    border: 2px solid #333;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 3px 3px 0px #666;
+    font-family: 'Comic Sans MS', cursive;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.download-button:hover {
+    background: #fff;
+    color: #333;
+    transform: translateY(-2px) rotate(-1deg);
+    box-shadow: 4px 4px 0px #666;
+}
+
+.download-button:active {
+    transform: translateY(1px) rotate(0deg);
+    box-shadow: 1px 1px 0px #666;
+}
+
+/* 深色模式下载列表样式 */
+body.dark-mode .download-item {
+    border-bottom: 1px dashed #666;
+}
+
+body.dark-mode .download-item:hover {
+    color: #fff;
+}
+
+body.dark-mode .download-content {
+    background: rgba(30, 30, 30, 0.8);
+    border-left: 3px solid #fff;
+}
+
+body.dark-mode .download-content p {
+    color: #fff;
+}
+
+body.dark-mode .download-button {
+    background: #fff;
+    color: #333;
+    border: 2px solid #fff;
+    box-shadow: 3px 3px 0px #666;
+}
+
+body.dark-mode .download-button:hover {
+    background: #333;
+    color: #fff;
+}
+
 /* 页脚 */
 .footer {
     background: #fff;
@@ -627,6 +754,7 @@ body.dark-mode .footer-links a:active {
     transform: translateY(100%);
     opacity: 0;
     transition: all 0.6s ease-out;
+    clear: both;
 }
 
 .footer.show {
@@ -711,6 +839,8 @@ body.dark-mode .footer-links a:active {
 }
 
 /* 响应式设计 */
+
+/* 平板设备 */
 @media (max-width: 768px) {
     .nav-list {
         flex-wrap: wrap;
@@ -719,6 +849,7 @@ body.dark-mode .footer-links a:active {
     .nav-item {
         padding: 8px 12px;
         font-size: 14px;
+        margin-bottom: 10px;
     }
     
     .nav-search {
@@ -733,6 +864,10 @@ body.dark-mode .footer-links a:active {
     
     .search-input:focus {
         width: 100%;
+    }
+    
+    .content-container {
+        margin-top: 220px;
     }
     
     .content-item {
@@ -757,6 +892,129 @@ body.dark-mode .footer-links a:active {
     .search-results-content {
         width: 95%;
         padding: 20px;
+    }
+    
+    /* 下载列表响应式 */
+    .download-content {
+        padding: 0 5px;
+    }
+    
+    .download-item.active .download-content {
+        padding: 10px 10px;
+    }
+    
+    .download-content p {
+        font-size: 13px;
+        margin: 6px 0;
+    }
+    
+    .download-button {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+}
+
+/* 手机设备 */
+@media (max-width: 480px) {
+    .logo h1 {
+        font-size: 24px;
+    }
+    
+    .nav {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px 0;
+    }
+    
+    .nav-item {
+        padding: 6px 10px;
+        font-size: 12px;
+        margin-bottom: 5px;
+    }
+    
+    .search-input {
+        font-size: 12px;
+        padding: 6px 30px 6px 10px;
+    }
+    
+    .theme-toggle {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+    }
+    
+    .content-container {
+        margin-top: 240px;
+    }
+    
+    .content-item {
+        width: 95%;
+        padding: 20px;
+    }
+    
+    .content-item h2 {
+        font-size: 24px;
+    }
+    
+    .content-item p {
+        font-size: 16px;
+    }
+    
+    .feature-card,
+    .forum-topics,
+    .about-info {
+        padding: 12px;
+        margin-top: 15px;
+    }
+    
+    .feature-card h3,
+    .forum-topics h3,
+    .about-info h3 {
+        font-size: 16px;
+        margin-bottom: 10px;
+        padding-bottom: 4px;
+    }
+    
+    .footer {
+        padding: 20px 15px;
+    }
+    
+    .footer h3 {
+        font-size: 16px;
+    }
+    
+    .footer p {
+        font-size: 13px;
+    }
+    
+    .footer-links a {
+        font-size: 12px;
+        padding: 4px 8px;
+    }
+    
+    .download-title {
+        font-size: 14px;
+    }
+    
+    .download-content p {
+        font-size: 12px;
+        margin: 4px 0;
+    }
+    
+    .download-button {
+        padding: 5px 10px;
+        font-size: 11px;
+    }
+}
+
+/* 大屏设备 */
+@media (min-width: 1024px) {
+    .content-item {
+        max-width: 900px;
+    }
+    
+    .footer-content {
+        max-width: 1200px;
     }
 }
 
@@ -799,232 +1057,4 @@ body.dark-mode .footer-links a:active {
 .footer-links a:active {
     transform: translateY(2px) rotate(0deg);
     box-shadow: 1px 1px 0px #666;
-}
-
-/* 下载列表样式 */
-.download-list {
-    list-style: none;
-}
-
-.download-item {
-    border-bottom: 1px dashed #999;
-    transition: all 0.3s ease;
-}
-
-.download-item:last-child {
-    border-bottom: none;
-}
-
-.download-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 0;
-    cursor: pointer;
-    font-family: 'Comic Sans MS', cursive;
-}
-
-.download-header:hover {
-    padding-left: 10px;
-    color: #333;
-}
-
-.download-title {
-    font-size: 16px;
-    font-weight: 600;
-}
-
-.download-toggle {
-    font-size: 14px;
-    transition: transform 0.3s ease;
-}
-
-.download-item.expanded .download-toggle {
-    transform: rotate(180deg);
-}
-
-.download-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease-out;
-    padding: 0 10px;
-}
-
-.download-item.expanded .download-content {
-    max-height: 500px;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px dashed #999;
-    border-radius: 8px;
-    background: #fafafa;
-}
-
-.download-info {
-    margin-bottom: 15px;
-}
-
-.download-info p {
-    margin-bottom: 8px;
-    font-size: 14px;
-    line-height: 1.5;
-}
-
-.download-info ul {
-    list-style: disc;
-    margin-left: 20px;
-    margin-top: 5px;
-}
-
-.download-info li {
-    margin-bottom: 4px;
-    font-size: 13px;
-}
-
-.download-btn {
-    display: block;
-    width: 100%;
-    padding: 12px 20px;
-    background: #333;
-    color: #fff;
-    border: 2px solid #333;
-    border-radius: 20px;
-    font-size: 14px;
-    font-weight: bold;
-    font-family: 'Comic Sans MS', cursive;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 3px 3px 0px #666;
-}
-
-.download-btn:hover {
-    background: #fff;
-    color: #333;
-    transform: translateY(-2px);
-    box-shadow: 4px 4px 0px #666;
-}
-
-.download-btn:active {
-    transform: translateY(1px);
-    box-shadow: 1px 1px 0px #666;
-}
-
-/* 深色模式下载样式 */
-body.dark-mode .download-item.expanded .download-content {
-    background: #1a1a1a;
-    border-color: #666;
-}
-
-body.dark-mode .download-info p {
-    color: #fff;
-}
-
-body.dark-mode .download-info li {
-    color: #ccc;
-}
-
-body.dark-mode .download-btn {
-    background: #fff;
-    color: #111;
-    border-color: #fff;
-}
-
-body.dark-mode .download-btn:hover {
-    background: #111;
-    color: #fff;
-}
-
-/* 下载成功模态窗口样式 */
-.download-success-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-}
-
-.download-success-modal.show {
-    display: flex;
-}
-
-.modal-content {
-    background: #fff;
-    padding: 40px;
-    border-radius: 16px;
-    box-shadow: 5px 5px 0px #333;
-    border: 2px solid #333;
-    text-align: center;
-    max-width: 400px;
-    width: 90%;
-    font-family: 'Comic Sans MS', cursive;
-}
-
-.modal-content h3 {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 20px;
-    font-weight: bold;
-}
-
-.modal-content p {
-    font-size: 16px;
-    color: #666;
-    margin-bottom: 30px;
-    line-height: 1.5;
-}
-
-.modal-close-btn {
-    background: #333;
-    color: #fff;
-    border: 2px solid #333;
-    border-radius: 20px;
-    padding: 12px 30px;
-    font-size: 16px;
-    font-weight: bold;
-    font-family: 'Comic Sans MS', cursive;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 3px 3px 0px #666;
-}
-
-.modal-close-btn:hover {
-    background: #fff;
-    color: #333;
-    transform: translateY(-2px);
-    box-shadow: 4px 4px 0px #666;
-}
-
-.modal-close-btn:active {
-    transform: translateY(1px);
-    box-shadow: 1px 1px 0px #666;
-}
-
-/* 深色模式模态窗口 */
-body.dark-mode .modal-content {
-    background: #111;
-    border-color: #fff;
-    box-shadow: 5px 5px 0px #666;
-}
-
-body.dark-mode .modal-content h3 {
-    color: #fff;
-}
-
-body.dark-mode .modal-content p {
-    color: #ccc;
-}
-
-body.dark-mode .modal-close-btn {
-    background: #fff;
-    color: #111;
-    border-color: #fff;
-}
-
-body.dark-mode .modal-close-btn:hover {
-    background: #111;
-    color: #fff;
 }
