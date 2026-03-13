@@ -17,7 +17,7 @@
                 <li class="nav-item active" data-index="0">首页</li>
                 <li class="nav-item" data-index="1">游戏博客</li>
                 <li class="nav-item" data-index="2">游戏交流</li>
-                <li class="nav-item" data-index="3">游戏下载</li>
+                <li class="nav-item" data-index="3">资源下载</li>
             </ul>
             <div class="nav-search">
                 <div class="search-wrapper">
@@ -79,15 +79,53 @@
                 </div>
             </section>
             <section class="content-item" data-index="3">
-                <h2>游戏下载</h2>
+                <h2>资源下载</h2>
                 <p>下载我制作的游戏和相关资源。</p>
                 <div class="forum-topics">
-                    <h3>可下载游戏</h3>
-                    <ul>
-                        <li>《冒险之旅》 - 2D平台游戏</li>
-                        <li>《太空探索》 - 科幻模拟游戏</li>
-                        <li>《策略大师》 - 回合制策略游戏</li>
-                        <li>游戏开发资源包</li>
+                    <h3>可下载资源</h3>
+                    <ul class="download-list">
+                        <li class="download-item">
+                            <div class="download-header">
+                                <span class="download-title">自动绑骨 (Auto-Rig Pro 3.76.22)</span>
+                                <span class="download-toggle">▼</span>
+                            </div>
+                            <div class="download-content">
+                                <div class="download-info">
+                                    <p><strong>版本：</strong>3.76.22</p>
+                                    <p><strong>适用版本：</strong>Blender</p>
+                                    <p><strong>简介：</strong>专业的Blender骨骼绑定插件，支持快速自动绑定角色骨骼，提高动画制作效率。</p>
+                                    <p><strong>功能特点：</strong></p>
+                                    <ul>
+                                        <li>自动识别角色结构</li>
+                                        <li>一键生成完整骨骼系统</li>
+                                        <li>支持IK/FK切换</li>
+                                        <li>兼容Mixamo动画</li>
+                                    </ul>
+                                </div>
+                                <button class="download-btn" data-file="Auto-Rig Pro 3.76.22.blend">下载到本地</button>
+                            </div>
+                        </li>
+                        <li class="download-item">
+                            <div class="download-header">
+                                <span class="download-title">体素蒙皮 (Voxel Heat Diffuse Skinning)</span>
+                                <span class="download-toggle">▼</span>
+                            </div>
+                            <div class="download-content">
+                                <div class="download-info">
+                                    <p><strong>版本：</strong>最新版</p>
+                                    <p><strong>适用版本：</strong>Blender</p>
+                                    <p><strong>简介：</strong>基于体素热扩散算法的自动蒙皮工具，为3D模型生成高质量的权重。</p>
+                                    <p><strong>功能特点：</strong></p>
+                                    <ul>
+                                        <li>基于物理的权重计算</li>
+                                        <li>支持复杂模型</li>
+                                        <li>可调节参数控制</li>
+                                        <li>快速计算速度</li>
+                                    </ul>
+                                </div>
+                                <button class="download-btn" data-file="Voxel Heat Diffuse Skinning.blend">下载到本地</button>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </section>
@@ -100,7 +138,7 @@
             <div class="footer-info">
                 <h3>关于我</h3>
                 <p>我是一名独立游戏开发者和博主</p>
-                <p>有用过Godot,ue,Cocos等</p>
+                <p>有用过Godot,ue,Cocos,blender等</p>
             </div>
             <div class="footer-links">
                 <h3>快速链接</h3>
@@ -108,7 +146,7 @@
                     <li><a href="#" class="footer-link" data-index="0">首页</a></li>
                     <li><a href="#" class="footer-link" data-index="1">游戏博客</a></li>
                     <li><a href="#" class="footer-link" data-index="2">游戏交流</a></li>
-                    <li><a href="#" class="footer-link" data-index="3">游戏下载</a></li>
+                    <li><a href="#" class="footer-link" data-index="3">资源下载</a></li>
                 </ul>
             </div>
             <div class="footer-contact">
@@ -121,6 +159,15 @@
             <p>&copy; 2026 游戏博客 版权所有</p>
         </div>
     </footer>
+
+    <!-- 下载成功模态窗口 -->
+    <div class="download-success-modal" id="download-success-modal">
+        <div class="modal-content">
+            <h3>下载成功</h3>
+            <p>文件已成功下载到您的默认下载位置</p>
+            <button class="modal-close-btn" id="modal-close-btn">确定</button>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

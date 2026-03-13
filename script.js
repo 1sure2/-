@@ -24,6 +24,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 // 调整内容容器高度
                 setTimeout(() => {
                     const contentHeight = item.offsetHeight;
+                    // 添加平滑过渡
+                    contentWrapper.style.transition = 'height 0.5s ease-out';
                     contentWrapper.style.height = contentHeight + 'px';
                 }, 300);
             } else {
@@ -127,10 +129,8 @@ document.addEventListener('DOMContentLoaded', function() {
         { title: '游戏引擎选择指南', content: '如何选择适合自己项目的游戏引擎', category: '游戏交流' },
         { title: '游戏设计思路分享', content: '分享游戏设计的创新思路和方法', category: '游戏交流' },
         { title: '玩家心得交流', content: '与其他玩家交流游戏体验和心得', category: '游戏交流' },
-        { title: '《冒险之旅》 - 2D平台游戏', content: '一款充满挑战的2D平台游戏', category: '游戏下载' },
-        { title: '《太空探索》 - 科幻模拟游戏', content: '体验太空探索的无限可能', category: '游戏下载' },
-        { title: '《策略大师》 - 回合制策略游戏', content: '考验策略思维的回合制游戏', category: '游戏下载' },
-        { title: '游戏开发资源包', content: '包含各种游戏开发所需的资源', category: '游戏下载' }
+        { title: '自动绑骨 (Auto-Rig Pro 3.76.22)', content: '专业的Blender骨骼绑定插件，支持快速自动绑定角色骨骼', category: '资源下载' },
+        { title: '体素蒙皮 (Voxel Heat Diffuse Skinning)', content: '基于体素热扩散算法的自动蒙皮工具', category: '资源下载' }
     ];
 
     // 执行搜索
@@ -178,7 +178,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         case '游戏交流':
                             pageIndex = 2;
                             break;
-                        case '游戏下载':
+                        case '资源下载':
                             pageIndex = 3;
                             break;
                         default:
@@ -333,4 +333,89 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 100);
     // 初始页面也检查是否需要高亮
     setTimeout(highlightSearchTerms, 500);
+
+    // 下载列表展开/收起功能
+    const downloadItems = document.querySelectorAll('.download-item');
+    downloadItems.forEach(item => {
+        const header = item.querySelector('.download-header');
+        if (header) {
+            header.addEventListener('click', function() {
+                // 关闭其他展开的项
+                downloadItems.forEach(otherItem => {
+                    if (otherItem !== item && otherItem.classList.contains('expanded')) {
+                        otherItem.classList.remove('expanded');
+                    }
+                });
+                // 切换当前项的展开状态
+                item.classList.toggle('expanded');
+                
+                // 平滑更新内容容器高度
+                const activeContent = document.querySelector('.content-item.active');
+                if (activeContent) {
+                    // 先移除页脚显示
+                    const footer = document.querySelector('.footer');
+                    if (footer) {
+                        footer.classList.remove('show');
+                    }
+                    
+                    // 等待展开动画完成
+                    setTimeout(() => {
+                        const contentHeight = activeContent.offsetHeight;
+                        // 添加平滑过渡
+                        contentWrapper.style.transition = 'height 0.5s ease-out';
+                        contentWrapper.style.height = contentHeight + 'px';
+                        
+                        // 等待高度过渡完成后显示页脚
+                        setTimeout(() => {
+                            if (footer) {
+                                footer.classList.add('show');
+                            }
+                        }, 500);
+                    }, 400);
+                }
+            });
+        }
+    });
+
+    // 下载按钮功能
+    const downloadBtns = document.querySelectorAll('.download-btn');
+    const successModal = document.getElementById('download-success-modal');
+    const closeModalBtn = document.getElementById('modal-close-btn');
+    
+    // 关闭模态窗口
+    if (closeModalBtn) {
+        closeModalBtn.addEventListener('click', function() {
+            successModal.classList.remove('show');
+        });
+    }
+    
+    // 点击模态窗口外部关闭
+    if (successModal) {
+        successModal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.remove('show');
+            }
+        });
+    }
+    
+    downloadBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const fileName = this.getAttribute('data-file');
+            if (fileName) {
+                // 创建隐藏的a标签来触发下载
+                const link = document.createElement('a');
+                link.href = fileName;
+                link.download = fileName; // 设置文件名
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                // 显示下载成功模态窗口
+                if (successModal) {
+                    successModal.classList.add('show');
+                }
+            }
+        });
+    });
 });
